@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UUID Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 300px;
+            padding: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+<h3>Found UUIDs:</h3>
+<ul id="uuid-list"></ul>
+
+<script>
+    // Fetch the UUIDs from storage and display them
+    chrome.storage.local.get('uuids', (data) => {
+        const uuids = data.uuids || [];
+        const list = document.getElementById('uuid-list');
+        uuids.forEach(uuid => {
+            const listItem = document.createElement('li');
+            listItem.textContent = uuid;
+            list.appendChild(listItem);
+        });
+    });
+</script>
+</body>
+</html>
