@@ -2,38 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>UUID Finder</title>
+    <title>UUID Finder Settings</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             width: 300px;
             padding: 10px;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+        label {
+            display: block;
+            margin-top: 10px;
         }
-        li {
-            margin-bottom: 5px;
-            word-break: break-all;
+        input {
+            width: 100%;
+            padding: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-<h3>Found UUIDs:</h3>
-<ul id="uuid-list"></ul>
+<h3>UUID Finder Settings</h3>
+<label for="prefix">Prefix:</label>
+<input type="text" id="prefix" placeholder="Enter prefix">
 
-<script>
-    // Fetch the UUIDs from storage and display them
-    chrome.storage.local.get('uuids', (data) => {
-        const uuids = data.uuids || [];
-        const list = document.getElementById('uuid-list');
-        uuids.forEach(uuid => {
-            const listItem = document.createElement('li');
-            listItem.textContent = uuid;
-            list.appendChild(listItem);
-        });
-    });
-</script>
+<label for="postfix">Postfix:</label>
+<input type="text" id="postfix" placeholder="Enter postfix">
+
+<button id="saveButton">Save Settings</button>
+
+<script src="popup.js"></script>
 </body>
 </html>
